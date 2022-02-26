@@ -14,8 +14,8 @@ const router = new VueRouter({
         title: '首页'
       }
     }, {
-      path: '/catagory',
-      component: () => import('../view/catagory/index.vue'),
+      path: '/category',
+      component: () => import('../view/category/index.vue'),
       meta: {
         title: '分类'
       }

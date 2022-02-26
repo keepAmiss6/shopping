@@ -1,25 +1,19 @@
 <template>
   <div id="app">
-    开启商城案例
+    <shop-index></shop-index>
   </div>
 </template>
 
 <script>
-
+import shopIndex from './view'
 export default {
   name: 'App',
   components: {
+    shopIndex
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "assets/base.css";
 </style>
