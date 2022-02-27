@@ -18,6 +18,7 @@
   text-align: center;
   height: 49px;
   background: ghostwhite;
+  box-shadow: 0 -2px 3px #aaaaaa;
   /*
   定位相关的，单纯加position fixed后会影响flex布局
   使用bottom,left,right调整

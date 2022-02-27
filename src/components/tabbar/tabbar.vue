@@ -6,7 +6,7 @@
     <div v-show="isActive">
       <slot name="item-img-active"></slot>
     </div>
-    <div>
+    <div :style="isActive?{'color':'red'}:{}">
       <slot name="item-text"></slot>
     </div>
   </div>
@@ -21,9 +21,9 @@
         require:true
       }
     },
-    data(){
-      return{
-        isActive: false
+    computed:{
+      isActive(){
+        return this.$route.path.includes(this.link)
       }
     },
     methods:{
