@@ -6,7 +6,7 @@
     <div v-show="isActive">
       <slot name="item-img-active"></slot>
     </div>
-    <div :style="isActive?{'color':'red'}:{}">
+    <div :style="isActive?{'color':activeColor}:{}">
       <slot name="item-text"></slot>
     </div>
   </div>
@@ -18,7 +18,10 @@
     props:{
       link:{
         type:String,
-        require:true
+      },
+      activeColor:{
+        type: String,
+        default:'red'
       }
     },
     computed:{

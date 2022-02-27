@@ -2,22 +2,22 @@
   <div>
     <router-view></router-view>
     <bar-index>
-      <tabbar link="/home">
+      <tabbar link="/home" activeColor="deepPink">
         <img src="../assets/tabbar/home.svg" slot="item-img">
         <img src="../assets/tabbar/home_active.svg" slot="item-img-active">
         <p slot="item-text">首页</p>
       </tabbar>
-      <tabbar link="/category">
+      <tabbar link="/category" activeColor="deepPink">
         <img src="../assets/tabbar/category.svg" slot="item-img">
         <img src="../assets/tabbar/category_active.svg" slot="item-img-active">
         <p slot="item-text">分类</p>
       </tabbar>
-      <tabbar link="/shopcart">
+      <tabbar link="/shopcart" activeColor="deepPink">
         <img src="../assets/tabbar/shopcart.svg" slot="item-img">
         <img src="../assets/tabbar/shopcart_active.svg" slot="item-img-active">
         <p slot="item-text">购物车</p>
       </tabbar>
-      <tabbar link="/profile">
+      <tabbar link="/profile" activeColor="deepPink">
         <img src="../assets/tabbar/profile.svg" slot="item-img">
         <img src="../assets/tabbar/profile_active.svg" slot="item-img-active">
         <p slot="item-text">我的</p>
