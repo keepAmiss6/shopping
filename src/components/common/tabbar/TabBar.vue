@@ -14,7 +14,7 @@
 
 <script>
   export default {
-    name: "tabbar",
+    name: "TabBar",
     props:{
       link:{
         type:String,

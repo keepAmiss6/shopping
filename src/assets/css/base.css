@@ -1,2 +1,11 @@
 @import './normalize.css';
 
+/*root获取根元素html*/
+:root{
+  --color-gray:#666;
+  --color-white:#fff;
+  --color-primary-height:#ff5777;
+  --color-primary-tint:#ff8198;
+  --font-size:14px;
+  --line-height:1.5
+}
