@@ -3,17 +3,20 @@
     <nav-bar class="home-nav">
       <div slot="center">欢迎来到购物街</div>
     </nav-bar>
+    <home-swiper :data="banner"></home-swiper>
   </div>
 </template>
 
 
 <script>
   import NavBar from "components/common/navbar/NavBar";
-  import {getHomeMultidata} from 'network/home.js'
+  import HomeSwiper from "./home-component/HomeSwiper";
+  import {getHomeMultidata} from 'network/home.js';
   export default {
     name: "index",
     components:{
-      NavBar
+      NavBar,
+      HomeSwiper
     },
     data(){
       return{
@@ -21,8 +24,8 @@
       }
     },
     async created() {
-      let res = await getHomeMultidata()
-      console.log(res)
+      let res = await getHomeMultidata();
+      this.banner = res.data.banner.list
     }
   }
 </script>
