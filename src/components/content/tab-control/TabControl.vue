@@ -29,6 +29,10 @@
   .tab-control {
     display: flex;
     text-align: center;
+    font-size: 15px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #fff;
 
     .tab-control-item {
       flex: 1;

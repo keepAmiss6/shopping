@@ -6,7 +6,8 @@
     <home-swiper :banner="banner"></home-swiper>
     <home-recommend :recommond="recommend"></home-recommend>
     <home-feature></home-feature>
-    <tab-control :title="['流行','新款','精选']"></tab-control>
+    <tab-control :title="['流行','新款','精选']" class="home-tab-control"></tab-control>
+
   </div>
 </template>
 
@@ -55,6 +56,11 @@
     left: 0;
     right: 0;
     z-index: 1;
+  }
+  .home-tab-control{
+    position: sticky;
+    top: 44px;
+
   }
 }
 </style>
