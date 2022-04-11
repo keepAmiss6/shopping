@@ -57,10 +57,11 @@
 
       },
       async getHomeGoods(type) {
-        const page = this.goods[type].page + 1;
+        const page = this.goods[type].pageIndex + 1;
         let res = await getHomeGoods(type, page);
-        let data = res?.data;
-        data && this.goods[type].list.push(...data)
+        console.log(res);
+        let list = res?.data?.list;
+        this.goods[type].list.push(...list)
       }
 
     }
@@ -84,6 +85,7 @@
     .home-tab-control {
       position: sticky;
       top: 44px;
+      z-index: 1;
 
     }
   }
