@@ -6,8 +6,10 @@
     <home-swiper :banner="banner"></home-swiper>
     <home-recommend :recommond="recommend"></home-recommend>
     <home-feature></home-feature>
-    <tab-control :title="['流行','新款','精选']" class="home-tab-control"></tab-control>
-    <goods-list :goods="goods['pop'].list"></goods-list>
+    <tab-control :title="['流行','新款','精选']"
+                 class="home-tab-control"
+                 @tabClick="tabClick"/>
+    <goods-list :goods="goods[currentType].list"></goods-list>
   </div>
 </template>
 
@@ -37,8 +39,9 @@
       return {
         banner: [],
         recommend: [],
+        currentType:'pop',
         goods: {
-          pop: {pageIndex: 0, list: [{title:11}]},
+          pop: {pageIndex: 0, list: [{title: 11}]},
           new: {pageIndex: 0, list: []},
           sell: {pageIndex: 0, list: []}
         }
@@ -46,9 +49,34 @@
     },
     async created() {
       this.getHomeMultidata();
-      this.getHomeGoods('pop')
+      this.getHomeGoods()
     },
     methods: {
+
+      /**
+       * 事件相关的
+       * */
+      tabClick(index) {
+        switch (index) {
+          case 0:
+            this.currentType='pop';
+            break;
+          case 1:
+            this.currentType='new';
+            break;
+          case 2:
+            this.currentType='sell';
+            break;
+          default:
+            this.currentType='pop'
+
+        }
+        this.getHomeGoods()
+      },
+      /**
+       * 网络请求相关
+       * @returns {Promise<void>}
+       */
       async getHomeMultidata() {
         let res = await getHomeMultidata();
         // console.log(res);
@@ -56,12 +84,12 @@
         this.recommend = res.data.recommend.list
 
       },
-      async getHomeGoods(type) {
-        const page = this.goods[type].pageIndex + 1;
-        let res = await getHomeGoods(type, page);
+      async getHomeGoods() {
+        const page = this.goods[this.currentType].pageIndex + 1;
+        let res = await getHomeGoods(this.currentType, page);
         console.log(res);
         let list = res?.data?.list;
-        this.goods[type].list.push(...list)
+        this.goods[this.currentType].list.push(...list)
       }
 
     }
@@ -71,6 +99,7 @@
 <style scoped lang="scss">
   .home {
     padding-top: 44px;
+    margin-bottom: 49px;
 
     .home-nav {
       background-color: var(--color-primary-height);

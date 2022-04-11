@@ -4,7 +4,7 @@
          :key="index"
          class="tab-control-item"
          :class="currentIndex === index?'active':''"
-         @click="()=>{currentIndex = index}">
+         @click="tabClick(index)">
       <span>{{ item}}</span>
     </div>
   </div>
@@ -21,6 +21,12 @@
     props: {
       title: Array,
       default: () => []
+    },
+    methods:{
+      tabClick(index){
+        this.currentIndex = index;
+        this.$emit('tabClick',index)
+      }
     }
   }
 </script>
