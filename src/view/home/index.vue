@@ -3,13 +3,16 @@
     <nav-bar class="home-nav">
       <div slot="center">欢迎来到购物街</div>
     </nav-bar>
+<!--    <scroll>-->
     <home-swiper :banner="banner"></home-swiper>
     <home-recommend :recommond="recommend"></home-recommend>
     <home-feature></home-feature>
     <tab-control :title="['流行','新款','精选']"
                  class="home-tab-control"
                  @tabClick="tabClick"/>
-    <goods-list :goods="goods[currentType].list"></goods-list>
+    <goods-list :goods="goods[currentType].list" class="goods-list"></goods-list>
+<!--    </scroll>-->
+    <BackTop @click.native="backTopClick"/>
   </div>
 </template>
 
@@ -25,6 +28,11 @@
   import HomeRecommend from "./home-component/HomeRecommend";
   import HomeFeature from "./home-component/HomeFeature";
 
+  // import Scroll from 'components/common/scroll/Scroll'
+  // import BScroll from 'better-scroll';
+
+  import BackTop from "components/content/backTop/BackTop";
+
   export default {
     name: "index",
     components: {
@@ -33,7 +41,9 @@
       GoodsList,
       HomeSwiper,
       HomeRecommend,
-      HomeFeature
+      HomeFeature,
+      // Scroll,
+      BackTop
     },
     data() {
       return {
@@ -50,6 +60,9 @@
     async created() {
       this.getHomeMultidata();
       this.getHomeGoods()
+    },
+    mounted(){
+      // new BScroll('.goods-list')
     },
     methods: {
 
@@ -73,6 +86,9 @@
         }
         this.getHomeGoods()
       },
+      backTopClick(){
+        console.log(11111)
+      },
       /**
        * 网络请求相关
        * @returns {Promise<void>}
@@ -87,7 +103,7 @@
       async getHomeGoods() {
         const page = this.goods[this.currentType].pageIndex + 1;
         let res = await getHomeGoods(this.currentType, page);
-        console.log(res);
+        console.log('goods',res);
         let list = res?.data?.list;
         this.goods[this.currentType].list.push(...list)
       }

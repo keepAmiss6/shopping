@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item">
-   <img :src="goodsItem.show.img" />
+   <img :src="goodsItem.show && goodsItem.show.img || defaultImg" />
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -17,6 +17,11 @@
         type: Object,
         default: () => {
         }
+      }
+    },
+    data(){
+      return{
+        defaultImg:'http://s11.mogucdn.com/mlcdn/c45406/180811_1k5hfa6d803575df3lkb6j67l5j3c_640x960.jpg_320x999.jpg'
       }
     }
   }
