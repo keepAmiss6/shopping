@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item" @click="itemClick">
    <img :src="goodsItem.show && goodsItem.show.img || defaultImg" />
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
@@ -22,6 +22,12 @@
     data(){
       return{
         defaultImg:'http://s11.mogucdn.com/mlcdn/c45406/180811_1k5hfa6d803575df3lkb6j67l5j3c_640x960.jpg_320x999.jpg'
+      }
+    },
+    methods:{
+      itemClick(){
+        console.log(this.goodsItem);
+        this.$router.push(`/detail/${this.goodsItem.iid}`)
       }
     }
   }

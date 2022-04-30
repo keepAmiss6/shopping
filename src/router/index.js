@@ -33,6 +33,13 @@ const router = new VueRouter({
       meta: {
         title: '我的'
       }
+    },
+    {
+      path: '/detail/:iid',
+      component: () => import('view/detail/index.vue'),
+      meta: {
+        title: '详情'
+      }
     }
   ]
 })

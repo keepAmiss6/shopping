@@ -3,7 +3,13 @@
     <nav-bar class="home-nav">
       <div slot="center">欢迎来到购物街</div>
     </nav-bar>
-<!--    <scroll>-->
+<!--    <scroll-->
+<!--        class="content"-->
+<!--        ref="scroll"-->
+<!--        @scroll="homeScroll"-->
+<!--        @pullingUp="homePullingUp"-->
+<!--        :pull-up-load="true"-->
+<!--        :probeType="3">-->
     <home-swiper :banner="banner"></home-swiper>
     <home-recommend :recommond="recommend"></home-recommend>
     <home-feature></home-feature>
@@ -12,7 +18,7 @@
                  @tabClick="tabClick"/>
     <goods-list :goods="goods[currentType].list" class="goods-list"></goods-list>
 <!--    </scroll>-->
-    <BackTop @click.native="backTopClick"/>
+    <BackTop @click.native="backTopClick" v-show="showGoTop"/>
   </div>
 </template>
 
@@ -29,7 +35,6 @@
   import HomeFeature from "./home-component/HomeFeature";
 
   // import Scroll from 'components/common/scroll/Scroll'
-  // import BScroll from 'better-scroll';
 
   import BackTop from "components/content/backTop/BackTop";
 
@@ -54,7 +59,8 @@
           pop: {pageIndex: 0, list: [{title: 11}]},
           new: {pageIndex: 0, list: []},
           sell: {pageIndex: 0, list: []}
-        }
+        },
+        showGoTop:false
       }
     },
     async created() {
@@ -63,6 +69,10 @@
     },
     mounted(){
       // new BScroll('.goods-list')
+      let that = this;
+      window.onscroll=function () {
+        that.showGoTop = Number(window.scrollY)>=1000
+      }
     },
     methods: {
 
@@ -89,6 +99,12 @@
       backTopClick(){
         console.log(11111)
       },
+      homeScroll(){
+        console.log('scroll start');
+      },
+      homePullingUp(){
+        console.log('上拉加载更多');
+      },
       /**
        * 网络请求相关
        * @returns {Promise<void>}
@@ -114,6 +130,7 @@
 
 <style scoped lang="scss">
   .home {
+    height: 100vh;
     padding-top: 44px;
     margin-bottom: 49px;
 
