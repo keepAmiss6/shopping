@@ -14,7 +14,7 @@
   import DetailBar from "./detail-tab-bar/DetailBar";
   import DetailSwiper from "./detail-swiper/DetailSwiper";
 
-  import getGoodDetail from 'network/detail.js'
+  import {getGoodDetail,Good} from 'network/detail.js'
 
   export default {
     name: "index",
@@ -25,7 +25,8 @@
     data() {
       return {
         topImg: [],
-        iid: ''
+        iid: '',
+        good:{}
       }
     },
     async created() {
@@ -33,6 +34,10 @@
       let res = await getGoodDetail(this.iid);
       console.log(res);
       this.topImg = res?.result?.itemInfo?.topImages
+
+      const data = res.result
+      this.good=new Good(data?.itemInfo,data?.columns,data?.shopInfo?.services)
+
     }
   }
 </script>
