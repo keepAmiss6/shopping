@@ -8,7 +8,11 @@ export function getGoodDetail(id) {
     }
   })
 }
-
+export function getRecommend() {
+  return request({
+    url: '/recommend',
+  })
+}
 export class Good {
   constructor(itemInfo,columns,service){
     this.title=itemInfo.title;

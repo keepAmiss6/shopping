@@ -11,7 +11,8 @@
         <DetailShopInfo :shop="shop"></DetailShopInfo>
         <DetailGoodsInfo :detail-info="detailInfo"></DetailGoodsInfo>
         <DetailParamInfo :param-info="paramInfo"></DetailParamInfo>
-
+        <DetailComment :comment-info="commentInfo"></DetailComment>
+        <GoodsList :goods="recommend"></GoodsList>
       </Scroll>
     </div>
   </div>
@@ -24,8 +25,10 @@
   import DetailShopInfo from "./shop-infor/DetailShopInfo";
   import DetailGoodsInfo from "./good-info/DetailGoodsInfo";
   import DetailParamInfo from "./param-info/DetailParamInfo";
+  import DetailComment from './comment/DetailComment'
+  import GoodsList from "components/content/goods/GoodsList";
 
-  import {getGoodDetail, Good, Shop,GoodsParam} from 'network/detail.js'
+  import {getGoodDetail, Good, Shop, GoodsParam, getRecommend} from 'network/detail.js'
   import Scroll from "components/common/scroll/Scroll";
 
   export default {
@@ -37,7 +40,9 @@
       DetailShopInfo,
       Scroll,
       DetailGoodsInfo,
-      DetailParamInfo
+      DetailParamInfo,
+      DetailComment,
+      GoodsList
     },
     data() {
       return {
@@ -46,18 +51,20 @@
         good: {},
         shop: {},
         detailInfo: {},
-        paramInfo:{}
+        paramInfo: {},
+        commentInfo: {},
+        recommend: []
       }
     },
     async created() {
       this.iid = this.$route.params.iid;
       let res = await getGoodDetail(this.iid);
-      console.log(res);
+      // console.log(res);
       this.topImg = res?.result?.itemInfo?.topImages
 
       const data = res.result
       this.good = new Good(data?.itemInfo, data?.columns, data?.shopInfo?.services)
-      console.log(this.good)
+      // console.log(this.good)
 
       this.shop = new Shop(data.shopInfo)
 
@@ -65,6 +72,15 @@
       this.detailInfo = data.detailInfo
 
       this.paramInfo = new GoodsParam(data.itemParams.info, data.itemParams.rule)
+
+      if (data.rate.CRate !== 0) {
+        this.commentInfo = data.rate.list[0]
+      }
+
+
+      let recommend = await getRecommend();
+      this.recommend = recommend?.data?.list
+      console.log('recommend', this.recommend?.data?.list);
     }
   }
 </script>
@@ -76,7 +92,8 @@
     background: #ffffff;
     height: 100vh;
     margin-bottom: 20px;
-    >div{
+
+    > div {
       background: #ffffff;
     }
 
