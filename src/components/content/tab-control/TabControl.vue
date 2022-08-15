@@ -1,9 +1,9 @@
 <template>
-  <div class="tab-control">
+  <div class="tab-control"
+       v-class_directive.stop="{className:'tab-control-item',activeName:'active',currentIndex}">
     <div v-for="(item,index) in title"
          :key="index"
          class="tab-control-item"
-         :class="currentIndex === index?'active':''"
          @click="tabClick(index)">
       <span>{{ item}}</span>
     </div>
@@ -11,8 +11,12 @@
 </template>
 
 <script>
+  import class_directive from "../../../directives/class_directive.js";
   export default {
     name: "TabControl",
+    directives:{
+      class_directive
+    },
     data() {
       return {
         currentIndex: 0
