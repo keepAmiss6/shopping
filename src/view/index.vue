@@ -12,7 +12,7 @@
         <img src="~assets/img/tabbar/category_active.svg" slot="item-img-active">
         <p slot="item-text">分类</p>
       </tab-bar>
-      <tab-bar link="/shopcart" activeColor="deepPink">
+      <tab-bar link="/shopcar" activeColor="deepPink">
         <img src="~assets/img/tabbar/shopcart.svg" slot="item-img">
         <img src="~assets/img/tabbar/shopcart_active.svg" slot="item-img-active">
         <p slot="item-text">购物车</p>

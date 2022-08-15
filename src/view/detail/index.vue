@@ -14,6 +14,7 @@
         <DetailComment :comment-info="commentInfo"></DetailComment>
         <GoodsList :goods="recommend"></GoodsList>
       </Scroll>
+      <detail-bottom-bar @addToCart="addToCart"></detail-bottom-bar>
     </div>
   </div>
 </template>
@@ -27,6 +28,7 @@
   import DetailParamInfo from "./param-info/DetailParamInfo";
   import DetailComment from './comment/DetailComment'
   import GoodsList from "components/content/goods/GoodsList";
+  import DetailBottomBar from './btn/DetailBottomBar'
 
   import {getGoodDetail, Good, Shop, GoodsParam, getRecommend} from 'network/detail.js'
   import Scroll from "components/common/scroll/Scroll";
@@ -42,6 +44,7 @@
       DetailGoodsInfo,
       DetailParamInfo,
       DetailComment,
+      DetailBottomBar,
       GoodsList
     },
     data() {
@@ -81,6 +84,20 @@
       let recommend = await getRecommend();
       this.recommend = recommend?.data?.list
       console.log('recommend', this.recommend?.data?.list);
+    },
+    methods:{
+      addToCart() {
+        // 1.创建对象
+        const obj = {}
+        // 2.对象信息
+        obj.iid = this.iid;
+        // obj.imgURL = this.topImages[0]
+        obj.title = this.goods.title
+        obj.desc = this.goods.desc;
+        obj.newPrice = this.goods.nowPrice;
+        // 3.添加到Store中
+        // this.$store.commit('addCart', obj)
+      },
     }
   }
 </script>

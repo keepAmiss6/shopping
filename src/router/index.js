@@ -21,7 +21,7 @@ const router = new VueRouter({
         title: '分类'
       }
     }, {
-      path: '/shopcart',
+      path: '/shopcar',
       component: () => import('view/shopcar/index.vue'),
       meta: {
         title: '购物车'
@@ -29,7 +29,7 @@ const router = new VueRouter({
 
     }, {
       path: '/profile',
-      component: () => import('view/profile/index.vue'),
+      component: () => import('view/profile/Profile.vue'),
       meta: {
         title: '我的'
       }
